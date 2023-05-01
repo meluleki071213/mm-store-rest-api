@@ -9,17 +9,14 @@ import java.time.LocalDate;
 @Table(name="Customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // specifies the generation strategies for the values of primary keys
+    @GeneratedValue(strategy = GenerationType.AUTO) // specifies the generation strategies for the values of primary keys
     private long id;
 
-    @Column(name = "Name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "Date_Of_Birth")
+    @Column(name = "date_of_birth")
     private LocalDate dob;
-
-    @Column(name = "Address")
     private String address; //This can be an object
-
     private LocalDate createdAt;
 }
