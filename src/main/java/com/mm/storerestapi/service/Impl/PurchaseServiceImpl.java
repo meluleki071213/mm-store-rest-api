@@ -10,6 +10,7 @@ import com.mm.storerestapi.repository.PurchaseRepository;
 import com.mm.storerestapi.service.PurchaseService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class PurchaseServiceImpl implements PurchaseService {
@@ -54,12 +55,18 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     @Override
-    public List<Purchase> purchasesByCustomer(long id) {
-        return purchaseRepository.findByCustomer_Id(id);
+    public int purchasesByCustomer(long id) {
+        return purchaseRepository.findByCustomer_Id(id).size();
     }
 
     @Override
     public List<Purchase> purchasesByCustomerAndProduct(long customerId, long productId) {
         return purchaseRepository.findByCustomer_IdAndProduct_Id(customerId, productId);
     }
+
+    //TODO: Fix the query on the Repository 1st
+//    @Override
+//    public double getAvgByCustomer(long id, LocalDate startDate, LocalDate endDate) {
+//        return purchaseRepository.getAvgByCustomerId(id, startDate, endDate);
+//    }
 }

@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,7 @@ public class PurchaseController {
 
     // 3(a) Get number of purchases made by customer
     @GetMapping("/customer/{customer_id}")
-    public List<Purchase> purchasesByCustomer(@PathVariable("customer_id") long customerId){
+    public int purchasesByCustomer(@PathVariable("customer_id") long customerId){
         return purchaseService.purchasesByCustomer(customerId);
     }
     @GetMapping("/customer/{customer_id}/product/{product_id}")
@@ -40,5 +41,13 @@ public class PurchaseController {
 //    @GetMapping("/customer/{customer_id}/expenditure")
 //    public int expenditurePerCustomer(@PathVariable("id") long customerId){
 //        return purchaseService.purchasesByCustomer(customerId);
+//    }
+
+    //TODO: Fix the query on the Repository 1st
+//    @GetMapping("/{customer_id}/{startDate}/{endDate}")
+//    public double expenditurePerCustomer(@PathVariable("customer_id") long customerId,
+//                                      @PathVariable("startDate") LocalDate startDate,
+//                                      @PathVariable("endDate") LocalDate endDate){
+//        return purchaseService.getAvgByCustomer(customerId, startDate, endDate);
 //    }
 }
