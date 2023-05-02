@@ -38,13 +38,15 @@ public class PurchaseServiceImpl implements PurchaseService {
         }
 
         // 4. Identify duplicate purchases and prevent them from occurring.
-        // check if a purchase is a duplicate or not
+        // commented out for testing purposes
 //        boolean purchaseExists = purchaseRepository.existsByCustomerAndProduct(purchase.getCustomer(), purchase.getProduct());
-
+//
 //        if (purchaseExists) {
 //            throw new RuntimeException("Duplicate purchase found for customer " + purchase.getCustomer().getId() + " and product " + purchase.getProduct().getId());
 //        }
 
+        //update the product stock
+        product.setQuantity(product.getQuantity() - purchase.getUnitsBought());
         // save a purchase to DB
         return purchaseRepository.save(purchase);
     }
@@ -65,8 +67,8 @@ public class PurchaseServiceImpl implements PurchaseService {
     }
 
     //TODO: Fix the query on the Repository 1st
-//    @Override
-//    public double getAvgByCustomer(long id, LocalDate startDate, LocalDate endDate) {
-//        return purchaseRepository.getAvgByCustomerId(id, startDate, endDate);
-//    }
+    @Override
+    public double getAvgExpByCustomer(LocalDate startDate, LocalDate endDate, long id) {
+        return purchaseRepository.findAvgExpByCustomer_IdAndDate(startDate, endDate, id);
+    }
 }

@@ -12,5 +12,5 @@ public interface PurchaseService {
     List<Purchase> purchasesByCustomerAndProduct(long customerId, long productId);
 
     //TODO: Fix the query on the Repository 1st
-//    double getAvgByCustomer(long id, LocalDate startDate, LocalDate endDate);
+    double getAvgExpByCustomer(LocalDate startDate, LocalDate endDate, long id);
 }

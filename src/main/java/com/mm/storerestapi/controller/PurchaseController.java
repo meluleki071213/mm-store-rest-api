@@ -36,18 +36,11 @@ public class PurchaseController {
         return purchaseService.purchasesByCustomerAndProduct(customerId, productId);
     }
 
-    // TODO: Work on the below expenditure controller
-   // 3(b) Get the average expenditure per customer in a given time frame
-//    @GetMapping("/customer/{customer_id}/expenditure")
-//    public int expenditurePerCustomer(@PathVariable("id") long customerId){
-//        return purchaseService.purchasesByCustomer(customerId);
-//    }
-
-    //TODO: Fix the query on the Repository 1st
-//    @GetMapping("/{customer_id}/{startDate}/{endDate}")
-//    public double expenditurePerCustomer(@PathVariable("customer_id") long customerId,
-//                                      @PathVariable("startDate") LocalDate startDate,
-//                                      @PathVariable("endDate") LocalDate endDate){
-//        return purchaseService.getAvgByCustomer(customerId, startDate, endDate);
-//    }
+    // 3(b) Get the average expenditure per customer in a given time frame
+    @GetMapping("/{customer_id}/{startDate}/{endDate}")
+    public double getAvgExpByCustomer(@PathVariable("customer_id") long customerId,
+                                      @PathVariable("startDate") LocalDate startDate,
+                                      @PathVariable("endDate") LocalDate endDate){
+        return purchaseService.getAvgExpByCustomer(startDate, endDate, customerId);
+    }
 }
