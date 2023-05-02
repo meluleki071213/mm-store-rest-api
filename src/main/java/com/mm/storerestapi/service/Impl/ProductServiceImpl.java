@@ -20,6 +20,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveProduct(Product product) {
+        // 2. Products should not be duplicated.
+        boolean productExists = productRepository.existsById(product.getId());
+        if(productExists) {
+            throw new RuntimeException("Duplicate product found for product " + product.getId());
+        }
+
         return productRepository.save(product);
     }
 

@@ -19,6 +19,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
     @Override
     public Customer saveCustomer(Customer customer) {
+        // 2. Customers should not be duplicated.
+        boolean customerExists = customerRepository.existsById(customer.getId());
+        if(customerExists) {
+            throw new RuntimeException("Duplicate customer found for customer " + customer.getId());
+        }
+
         return customerRepository.save(customer);
     }
     @Override

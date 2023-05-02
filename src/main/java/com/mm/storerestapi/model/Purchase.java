@@ -10,11 +10,13 @@ import java.time.LocalDate;
 @Table(name = "Purchase")
 public class Purchase {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
     @ManyToOne
+    @JoinColumn(name = "product_id", nullable = false)
     private Product product;
     private int unitsBought;
     private LocalDate date;
